@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anshu Kumar - Portfolio</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="back.jpg" rel="stylesheet" />
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8f9fa; /* Light gray background */
+        color: #34495e; /* Slightly softer dark blue/gray text */
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Montserrat", sans-serif; /* Distinct font for headings */
+        color: #2c3e50; /* Darker blue/gray for headings */
+      }
+
+      /* --- Accent Color Scheme (Blue) --- */
+      .accent-color {
+        color: #3b82f6;
+      } /* blue-500 */
+      .bg-accent-color {
+        background-color: #3b82f6;
+      }
+      .hover\:bg-accent-dark:hover {
+        background-color: #2563eb;
+      } /* blue-600 */
+      .border-accent-color {
+        border-color: #3b82f6;
+      }
+      .ring-accent-color:focus {
+        ring-color: #3b82f6;
+      }
+
+      /* --- Smooth Scrolling --- */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* --- Navbar Styling --- */
+      #navbar {
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+      #navbar.scrolled {
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.98
+        ); /* Slightly more opaque white */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+      /* Mobile menu open/close icons */
+      #menu-open-icon {
+        display: block;
+      }
+      #menu-close-icon {
+        display: none;
+      }
+      .mobile-menu-open #menu-open-icon {
+        display: none;
+      }
+      .mobile-menu-open #menu-close-icon {
+        display: block;
+      }
+
+      /* --- Hero Section Styling --- */
+      #home {
+        background-image: linear-gradient(
+            rgba(44, 62, 80, 0.6),
+            rgba(44, 62, 80, 0.6)
+          ),
+          url("background.jpg");
+        background-attachment: fixed; /* This creates the parallax effect */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: #ffffff; /* White text for contrast */
+      }
+      #home h1,
+      #home p {
+        color: #ffffff; /* Ensure text is white */
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Add subtle shadow for readability */
+      }
+
+      /* --- Section Styling --- */
+      section {
+        padding-top: 5rem; /* 80px */
+        padding-bottom: 5rem; /* 80px */
+      }
+      /* Alternating section backgrounds */
+      /* Use :nth-of-type for direct children of body */
+      body > section:nth-of-type(odd) {
+        background-color: #ffffff; /* White */
+      }
+      body > section:nth-of-type(even) {
+        background-color: #f8f9fa; /* Light Gray */
+      }
+      /* Override for specific sections if needed */
+      #home {
+        background-color: transparent !important;
+      } /* Handled by background image */
+      #contact {
+        background-color: #2c3e50 !important;
+        color: #ecf0f1;
+      } /* Dark background for contact */
+      #contact h2,
+      #contact p,
+      #contact a,
+      #contact span {
+        color: #ecf0f1;
+      }
+      #contact a:hover {
+        color: #3b82f6;
+      } /* Accent color on hover */
+      #contact svg {
+        color: #3b82f6;
+      } /* Accent color for icons */
+
+      /* --- Card Styling --- */
+      .card {
+        background-color: white;
+        border-radius: 0.75rem; /* 12px - slightly more rounded */
+        border: 1px solid #e5e7eb; /* Subtle border */
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
+          0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        transition: transform 0.3s ease, box-shadow 0.3s ease,
+          border-color 0.3s ease;
+        overflow: hidden;
+      }
+      .card:hover {
+        transform: translateY(-6px) scale(1.01); /* Slightly more lift and scale */
+        border-color: #3b82f6; /* Highlight border on hover */
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+
+      /* --- Button Styling --- */
+      .btn {
+        display: inline-block;
+        font-weight: 600;
+        padding: 0.75rem 1.5rem; /* 12px 24px */
+        border-radius: 0.5rem; /* 8px */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        text-align: center;
+        cursor: pointer;
+      }
+      .btn-primary {
+        background-color: #3b82f6; /* blue-500 */
+        color: white;
+        border: 1px solid transparent;
+      }
+      .btn-primary:hover {
+        background-color: #2563eb; /* blue-600 */
+        box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3); /* Shadow with accent color */
+        transform: translateY(-2px);
+      }
+      .btn-secondary {
+        background-color: #e5e7eb; /* gray-200 */
+        color: #374151; /* gray-700 */
+        border: 1px solid #d1d5db; /* gray-300 */
+      }
+      .btn-secondary:hover {
+        background-color: #d1d5db; /* gray-300 */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+      }
+
+      /* --- Skill Tag Styling --- */
+      .skill-tag {
+        background-color: #dbeafe; /* blue-100 */
+        color: #1e40af; /* blue-800 */
+        padding: 0.3rem 0.8rem; /* Slightly larger padding */
+        border-radius: 9999px;
+        font-size: 0.8rem; /* Slightly smaller font */
+        font-weight: 600; /* Bolder */
+        margin: 0.25rem;
+        display: inline-block;
+        border: 1px solid #bfdbfe; /* blue-200 */
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      }
+
+      /* --- About Me Photo Placeholder --- */
+      .profile-photo {
+        border: 4px solid white;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      /* --- Timeline Styling --- */
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -0.5rem; /* Adjust based on dot size and position */
+        top: 0.25rem; /* Align with dot */
+        width: 0.125rem; /* 2px */
+        height: 100%;
+        background-color: #bfdbfe; /* blue-200 */
+      }
+      .timeline-item:last-child::before {
+        height: 0; /* No line after the last item */
+      }
+      .timeline-dot {
+        position: absolute;
+        left: -0.875rem; /* Center the dot on the line */
+        top: 0.25rem; /* Align vertically */
+        width: 1rem; /* Dot size */
+        height: 1rem; /* Dot size */
+        background-color: #3b82f6; /* blue-500 */
+        border-radius: 9999px;
+        border: 2px solid white;
+        /* ring-4 ring-blue-100 - Replaced with border for simplicity */
+      }
+
+      /* --- Responsive Adjustments --- */
+      @media (min-width: 768px) {
+        #mobile-menu {
+          display: none !important;
+        } /* Ensure mobile menu is hidden */
+      }
+      /* Fix for potential parallax issues on mobile (optional) */
+      @media (max-width: 1024px) {
+        #home {
+          background-attachment: scroll; /* Disable fixed attachment on smaller/touch devices */
+        }
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-3">
+      <div class="container mx-auto px-6 flex justify-between items-center">
+        <a
+          href="#home"
+          class="text-3xl font-extrabold text-gray-800 hover:text-blue-600 transition duration-300"
+          >AK</a
+        >
+        <div class="hidden md:flex space-x-8">
+          <a
+            href="#home"
+            class="text-gray-600 hover:text-blue-600 font-medium transition duration-300"
+            >Home</a
+          >
+          <a
+            href="#about"
+            class="text-gray-600 hover:text-blue-600 font-medium transition duration-300"
+            >About</a
+          >
+          <a
+            href="#skills"
+            class="text-gray-600 hover:text-blue-600 font-medium transition duration-300"
+            >Skills</a
+          >
+          <a
+            href="#projects"
+            class="text-gray-600 hover:text-blue-600 font-medium transition duration-300"
+            >Projects</a
+          >
+          <a
+            href="#education"
+            class="text-gray-600 hover:text-blue-600 font-medium transition duration-300"
+            >Education</a
+          >
+          <a
+            href="#contact"
+            class="text-gray-600 hover:text-blue-600 font-medium transition duration-300"
+            >Contact</a
+          >
+        </div>
+        <div class="md:hidden">
+          <button
+            id="mobile-menu-button"
+            class="text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
+          >
+            <svg
+              id="menu-open-icon"
+              class="w-7 h-7"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              ></path>
+            </svg>
+            <svg
+              id="menu-close-icon"
+              class="w-7 h-7"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-white shadow-xl absolute top-full left-0 right-0 border-t border-gray-200"
+      >
+        <a
+          href="#home"
+          class="block py-3 px-6 text-gray-700 hover:bg-blue-50 hover:text-blue-600 font-medium transition duration-150"
+          >Home</a
+        >
+        <a
+          href="#about"
+          class="block py-3 px-6 text-gray-700 hover:bg-blue-50 hover:text-blue-600 font-medium transition duration-150"
+          >About</a
+        >
+        <a
+          href="#skills"
+          class="block py-3 px-6 text-gray-700 hover:bg-blue-50 hover:text-blue-600 font-medium transition duration-150"
+          >Skills</a
+        >
+        <a
+          href="#projects"
+          class="block py-3 px-6 text-gray-700 hover:bg-blue-50 hover:text-blue-600 font-medium transition duration-150"
+          >Projects</a
+        >
+        <a
+          href="#education"
+          class="block py-3 px-6 text-gray-700 hover:bg-blue-50 hover:text-blue-600 font-medium transition duration-150"
+          >Education</a
+        >
+        <a
+          href="#contact"
+          class="block py-3 px-6 text-gray-700 hover:bg-blue-50 hover:text-blue-600 font-medium transition duration-150"
+          >Contact</a
+        >
+      </div>
+    </nav>
+
+    <section id="home" class="min-h-screen flex items-center pt-16">
+      <div class="container mx-auto px-6 text-center">
+        <h1
+          class="text-5xl md:text-7xl font-extrabold mb-4"
+          data-aos="fade-down"
+        >
+          Anshu Kumar
+        </h1>
+        <p
+          class="text-xl md:text-2xl font-semibold mb-8"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          Software Developer | Web Enthusiast | Problem Solver
+        </p>
+        <p
+          class="max-w-2xl mx-auto text-lg mb-10"
+          data-aos="fade-up"
+          data-aos-delay="400"
+        >
+          Aspiring Computer Science engineer focused on building efficient
+          applications and user-centric digital experiences. Exploring cloud
+          technologies and passionate about solving complex problems.
+        </p>
+        <div
+          class="space-y-4 sm:space-y-0 sm:space-x-4"
+          data-aos="fade-up"
+          data-aos-delay="600"
+        >
+          <a href="#projects" class="btn btn-primary"> View Projects </a>
+          <a href="#contact" class="btn btn-secondary"> Contact Me </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container mx-auto px-6">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-center mb-12"
+          data-aos="fade-up"
+        >
+          About Me
+        </h2>
+        <div
+          class="flex flex-col md:flex-row items-center gap-12"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <div class="flex-shrink-0 w-64 h-64 md:w-72 md:h-72">
+            <img
+              src=""
+              alt="Anshu Kumar"
+              class="profile-photo w-full h-full rounded-full object-cover"
+              onerror="this.onerror=null; this.src='Anshu (2).jpg';"
+            />
+          </div>
+          <div class="text-lg leading-relaxed text-center md:text-left">
+            <p class="mb-4">
+              Hello! I'm Anshu Kumar, a Computer Science and Engineering student
+              at
+              <strong class="font-semibold text-gray-700"
+                >Lovely Professional University</strong
+              >, graduating in 2026. I have a solid grasp of programming
+              languages like
+              <strong class="font-semibold text-gray-700"
+                >C++, Java, and JavaScript</strong
+              >, along with core concepts in
+              <strong class="font-semibold text-gray-700"
+                >Data Structures and Algorithms</strong
+              >.
+            </p>
+            <p class="mb-4">
+              My project experience includes deploying static websites on
+              <strong class="font-semibold text-gray-700"
+                >AWS (S3, CloudFront)</strong
+              >, designing application prototypes using
+              <strong class="font-semibold text-gray-700">Figma</strong> with a
+              focus on UI/UX, and building responsive web components with
+              <strong class="font-semibold text-gray-700">HTML and CSS</strong>.
+              I'm proficient with tools like
+              <strong class="font-semibold text-gray-700"
+                >Git, GitHub, and Ubuntu</strong
+              >.
+            </p>
+            <p class="mb-4">
+              I'm a keen
+              <strong class="font-semibold text-gray-700">problem-solver</strong
+              >, enjoy participating in hackathons like Nebula Hacks and
+              COD-A-FEST, and I'm always eager to learn and apply new
+              technologies to create practical solutions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container mx-auto px-6">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-center mb-12"
+          data-aos="fade-up"
+        >
+          Technical Skills
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="card p-6" data-aos="fade-up">
+            <h3 class="text-xl font-semibold mb-4">Languages</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">C++</span>
+              <span class="skill-tag">Java</span>
+              <span class="skill-tag">JavaScript</span>
+            </div>
+          </div>
+          <div class="card p-6" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="text-xl font-semibold mb-4">Technologies & Tools</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">HTML</span>
+              <span class="skill-tag">CSS</span>
+              <span class="skill-tag">Git</span>
+              <span class="skill-tag">GitHub</span>
+              <span class="skill-tag">Ubuntu</span>
+              <span class="skill-tag">AWS S3</span>
+              <span class="skill-tag">AWS CloudFront</span>
+              <span class="skill-tag">AWS CloudWatch</span>
+              <span class="skill-tag">AWS ACM</span>
+              <span class="skill-tag">Figma</span>
+            </div>
+          </div>
+          <div class="card p-6" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="text-xl font-semibold mb-4">Core Skills</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">Data Structures</span>
+              <span class="skill-tag">Algorithms</span>
+              <span class="skill-tag">Problem-Solving</span>
+              <span class="skill-tag">Responsive Web Design</span>
+              <span class="skill-tag">UI/UX Design</span>
+              <span class="skill-tag">Prototyping</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container mx-auto px-6">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-center mb-12"
+          data-aos="fade-up"
+        >
+          Projects
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div class="card flex flex-col" data-aos="fade-up">
+            <div class="p-6 flex-grow">
+              <h3 class="text-xl font-semibold mb-2">
+                Static Website Host on AWS S3
+              </h3>
+              <p class="text-sm text-gray-500 mb-3">December 2024</p>
+              <p class="text-gray-600 mb-4 text-sm">
+                Deployed a secure, scalable, and cost-effective static website
+                using AWS S3, CloudFront CDN, and ACM for HTTPS.
+              </p>
+              <h4 class="font-semibold text-gray-700 mb-2 text-sm">
+                Key Achievements:
+              </h4>
+              <ul
+                class="list-disc list-inside text-gray-600 space-y-1 mb-4 text-sm pl-4"
+              >
+                <li>Scalable S3 Hosting Setup</li>
+                <li>CloudFront CDN for Performance (40% latency reduction)</li>
+                <li>HTTPS Security via ACM</li>
+                <li>Enhanced Global Content Delivery</li>
+              </ul>
+              <h4 class="font-semibold text-gray-700 mb-2 text-sm">
+                Tech Stack:
+              </h4>
+              <div class="flex flex-wrap gap-1 mb-4">
+                <span class="skill-tag !bg-orange-100 !text-orange-800 !text-xs"
+                  >AWS S3</span
+                >
+                <span class="skill-tag !bg-orange-100 !text-orange-800 !text-xs"
+                  >CloudFront</span
+                >
+                <span class="skill-tag !bg-orange-100 !text-orange-800 !text-xs"
+                  >CloudWatch</span
+                >
+                <span class="skill-tag !bg-orange-100 !text-orange-800 !text-xs"
+                  >ACM</span
+                >
+              </div>
+            </div>
+            <div class="p-4 bg-gray-50 border-t border-gray-100 mt-auto">
+              <a
+                href="https://github.com/Anshuthisside/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-blue-600 hover:text-blue-800 font-medium text-sm hover:underline"
+                >View on GitHub</a
+              >
+            </div>
+          </div>
+
+          <div
+            class="card flex flex-col"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="p-6 flex-grow">
+              <h3 class="text-xl font-semibold mb-2">
+                Medical Application Prototype
+              </h3>
+              <p class="text-sm text-gray-500 mb-3">March 2024</p>
+              <p class="text-gray-600 mb-4 text-sm">
+                Designed a user-friendly medical app prototype in Figma focusing
+                on intuitive UI/UX, reusable components, and dynamic user flows.
+              </p>
+              <h4 class="font-semibold text-gray-700 mb-2 text-sm">
+                Key Activities:
+              </h4>
+              <ul
+                class="list-disc list-inside text-gray-600 space-y-1 mb-4 text-sm pl-4"
+              >
+                <li>UI/UX Design & Prototyping</li>
+                <li>Reusable Component Creation</li>
+                <li>High-Fidelity Wireframing</li>
+                <li>Usability Testing & Iteration</li>
+              </ul>
+              <h4 class="font-semibold text-gray-700 mb-2 text-sm">
+                Tools Used:
+              </h4>
+              <div class="flex flex-wrap gap-1 mb-4">
+                <span class="skill-tag !bg-purple-100 !text-purple-800 !text-xs"
+                  >Figma</span
+                >
+                <span class="skill-tag !bg-pink-100 !text-pink-800 !text-xs"
+                  >UI/UX Design</span
+                >
+                <span class="skill-tag !bg-indigo-100 !text-indigo-800 !text-xs"
+                  >Prototyping</span
+                >
+              </div>
+            </div>
+            <div class="p-4 bg-gray-50 border-t border-gray-100 mt-auto">
+              <span class="text-gray-400 text-sm italic">Design Project</span>
+            </div>
+          </div>
+
+          <div
+            class="card flex flex-col"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="p-6 flex-grow">
+              <h3 class="text-xl font-semibold mb-2">Minerals Login Page</h3>
+              <p class="text-sm text-gray-500 mb-3">June 2023</p>
+              <p class="text-gray-600 mb-4 text-sm">
+                Developed a visually engaging, responsive, and performant login
+                page using HTML & CSS with a focus on modular design.
+              </p>
+              <h4 class="font-semibold text-gray-700 mb-2 text-sm">
+                Key Features:
+              </h4>
+              <ul
+                class="list-disc list-inside text-gray-600 space-y-1 mb-4 text-sm pl-4"
+              >
+                <li>Scalable & Modular Design</li>
+                <li>Consistent Design System</li>
+                <li>Performance Optimization (20% faster load)</li>
+                <li>Responsive Across Devices</li>
+              </ul>
+              <h4 class="font-semibold text-gray-700 mb-2 text-sm">
+                Tech Stack:
+              </h4>
+              <div class="flex flex-wrap gap-1 mb-4">
+                <span class="skill-tag !bg-red-100 !text-red-800 !text-xs"
+                  >HTML</span
+                >
+                <span class="skill-tag !bg-blue-100 !text-blue-800 !text-xs"
+                  >CSS</span
+                >
+                <span class="skill-tag !bg-teal-100 !text-teal-800 !text-xs"
+                  >Responsive Design</span
+                >
+              </div>
+            </div>
+            <div class="p-4 bg-gray-50 border-t border-gray-100 mt-auto">
+              <a
+                href="https://github.com/Anshuthisside/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-blue-600 hover:text-blue-800 font-medium text-sm hover:underline"
+                >View on GitHub</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container mx-auto px-6">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-center mb-12"
+          data-aos="fade-up"
+        >
+          Education
+        </h2>
+        <div class="max-w-3xl mx-auto relative pl-4">
+          <div
+            class="timeline-item relative pb-8"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="timeline-dot"></div>
+            <div class="ml-6">
+              <div
+                class="bg-white p-6 rounded-lg shadow-md border border-gray-200"
+              >
+                <div
+                  class="flex flex-col sm:flex-row justify-between sm:items-center mb-2"
+                >
+                  <h3 class="text-xl font-semibold text-blue-700">
+                    Lovely Professional University
+                  </h3>
+                  <span class="text-gray-500 font-medium text-sm mt-1 sm:mt-0"
+                    >Jalandhar, Punjab</span
+                  >
+                </div>
+                <p class="text-gray-700 font-medium mb-1">
+                  B.Tech - Computer Science & Engineering
+                </p>
+                <p class="text-gray-600 text-sm">2022 – 2026 (Expected)</p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="timeline-item relative pb-8"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="timeline-dot"></div>
+            <div class="ml-6">
+              <div
+                class="bg-white p-6 rounded-lg shadow-md border border-gray-200"
+              >
+                <div
+                  class="flex flex-col sm:flex-row justify-between sm:items-center mb-2"
+                >
+                  <h3 class="text-xl font-semibold text-blue-700">
+                    Himalayan Public School
+                  </h3>
+                  <span class="text-gray-500 font-medium text-sm mt-1 sm:mt-0"
+                    >Patna, Bihar</span
+                  >
+                </div>
+                <p class="text-gray-700 font-medium mb-1">
+                  12th Grade (Science)
+                </p>
+                <p class="text-gray-600 text-sm">2020 – 2022</p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="timeline-item relative pb-0"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="timeline-dot"></div>
+            <div class="ml-6">
+              <div
+                class="bg-white p-6 rounded-lg shadow-md border border-gray-200"
+              >
+                <div
+                  class="flex flex-col sm:flex-row justify-between sm:items-center mb-2"
+                >
+                  <h3 class="text-xl font-semibold text-blue-700">
+                    S.S. Public School
+                  </h3>
+                  <span class="text-gray-500 font-medium text-sm mt-1 sm:mt-0"
+                    >Patna, Bihar</span
+                  >
+                </div>
+                <p class="text-gray-700 font-medium mb-1">10th Grade</p>
+                <p class="text-gray-600 text-sm">Completed 2020</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="certificates-activities">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+          <div>
+            <h2
+              class="text-3xl md:text-4xl font-bold text-center mb-12"
+              data-aos="fade-up"
+            >
+              Certificates
+            </h2>
+            <div class="space-y-6">
+              <div
+                class="card p-5 text-center hover:border-blue-400"
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
+                <h4 class="font-semibold text-gray-800">
+                  C++ Basic Structures
+                </h4>
+                <p class="text-sm text-gray-500">(November 2024)</p>
+              </div>
+              <div
+                class="card p-5 text-center hover:border-blue-400"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                <h4 class="font-semibold text-gray-800">
+                  Core and Advance Java
+                </h4>
+                <p class="text-sm text-gray-500">(June 2023)</p>
+              </div>
+              <div
+                class="card p-5 text-center hover:border-blue-400"
+                data-aos="fade-up"
+                data-aos-delay="300"
+              >
+                <h4 class="font-semibold text-gray-800">
+                  Introduction to Hardware and Operating Systems
+                </h4>
+                <p class="text-sm text-gray-500">(December 2023)</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h2
+              class="text-3xl md:text-4xl font-bold text-center mb-12"
+              data-aos="fade-up"
+            >
+              Activities
+            </h2>
+            <div class="space-y-6">
+              <div
+                class="card p-5 text-center hover:border-blue-400"
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
+                <h4 class="font-semibold text-gray-800">
+                  Nebula Hacks Participant
+                </h4>
+                <p class="text-sm text-gray-500">(January 2025)</p>
+              </div>
+              <div
+                class="card p-5 text-center hover:border-blue-400"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                <h4 class="font-semibold text-gray-800">
+                  COD-A-FEST Participant
+                </h4>
+                <p class="text-sm text-gray-500">
+                  University Coding Hackathon (October 2023)
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6" data-aos="fade-up">
+          Get In Touch
+        </h2>
+        <p
+          class="max-w-xl mx-auto text-lg mb-10"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          I'm always open to discussing new projects, creative ideas, or
+          opportunities to be part of your visions.
+        </p>
+        <div
+          class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-10 mb-12"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <div class="flex items-center space-x-3 group">
+            <svg
+              class="w-7 h-7 group-hover:text-white transition duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path>
+            </svg>
+            <a
+              href="mailto:Anshuthisside@gmail.com"
+              class="text-lg group-hover:text-white transition duration-300"
+              >Anshuthisside@gmail.com</a
+            >
+          </div>
+          <div class="flex items-center space-x-3 group">
+            <svg
+              class="w-7 h-7 group-hover:text-white transition duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+              ></path>
+            </svg>
+            <span class="text-lg group-hover:text-white transition duration-300"
+              >+91-8987000840</span
+            >
+          </div>
+        </div>
+        <div
+          class="flex justify-center space-x-8"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <a
+            href="https://linkedin.com/in/4anshu/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-white transform hover:scale-110 transition duration-300"
+          >
+            <svg
+              class="w-9 h-9"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+              />
+            </svg>
+            <span class="sr-only">LinkedIn</span>
+          </a>
+          <a
+            href="https://github.com/Anshuthisside/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-white transform hover:scale-110 transition duration-300"
+          >
+            <svg
+              class="w-9 h-9"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span class="sr-only">GitHub</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-6">
+      <div class="container mx-auto px-6 text-center text-sm">
+        &copy; 2025 Anshu Kumar. All Rights Reserved.
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+      // Wait for the DOM to be fully loaded before running scripts
+      document.addEventListener("DOMContentLoaded", () => {
+        // Initialize AOS (Animate on Scroll)
+        AOS.init({
+          duration: 800, // Animation duration in milliseconds
+          once: true, // Whether animation should happen only once - while scrolling down
+          offset: 50, // Offset (in px) from the original trigger point
+        });
+
+        // --- Navbar background change on scroll ---
+        const navbar = document.getElementById("navbar");
+        if (navbar) {
+          const navbarHeight = navbar.offsetHeight;
+          window.onscroll = function () {
+            if (window.scrollY > navbarHeight / 2) {
+              navbar.classList.add("scrolled");
+            } else {
+              navbar.classList.remove("scrolled");
+            }
+          };
+        } else {
+          console.warn("Navbar element with ID 'navbar' not found.");
+        }
+
+        // --- Mobile Menu Toggle ---
+        const menuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const body = document.body;
+
+        if (menuButton && mobileMenu) {
+          menuButton.addEventListener("click", (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle("hidden");
+            body.classList.toggle("mobile-menu-open");
+          });
+
+          const mobileLinks = mobileMenu.querySelectorAll("a");
+          mobileLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+              mobileMenu.classList.add("hidden");
+              body.classList.remove("mobile-menu-open");
+            });
+          });
+
+          document.addEventListener("click", (e) => {
+            if (
+              !mobileMenu.classList.contains("hidden") &&
+              !mobileMenu.contains(e.target) &&
+              !menuButton.contains(e.target)
+            ) {
+              mobileMenu.classList.add("hidden");
+              body.classList.remove("mobile-menu-open");
+            }
+          });
+        } else {
+          console.warn("Mobile menu button or menu element not found.");
+        }
+      }); // End of DOMContentLoaded listener
+    </script>
+  </body>
+</html>
